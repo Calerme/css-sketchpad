@@ -176,6 +176,7 @@
 
       const fakeStyleArea = document.querySelector('.code-view'),
             trueStyleArea = document.getElementById('true-style'),
+            currentSpeed = document.querySelector('.active').dataset.speed;
             speedBtns = document.querySelectorAll('button[data-speed]'),
             reviewBtn = document.querySelector('.review');
 
@@ -187,7 +188,7 @@
       });
 
       reviewBtn.addEventListener('click', () => {
-        const currentSpeed = document.querySelector('.active').dataset.speed;
+        currentSpeed = document.querySelector('.active').dataset.speed;
 
         fakeStyleArea.textContent = '';
         trueStyleArea.textContent = '';
@@ -197,5 +198,5 @@
         writeCode(code, fakeStyleArea, trueStyleArea, speedMap[currentSpeed])
       });
 
-      writeCode(code, fakeStyleArea, trueStyleArea, speedMap.normal);
+      writeCode(code, fakeStyleArea, trueStyleArea, speedMap[currentSpeed]);
 }.call();
