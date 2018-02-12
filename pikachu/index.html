@@ -27,6 +27,51 @@
             border: 1px solid #000;
             overflow: auto;
         }
+        .btn-wrapper {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            right: 0;
+        }
+        .btn-wrapper > button {
+            position: relative;
+            padding: .25rem .5rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            background-color: #fff;
+            border-bottom-left-radius: 20%;
+            cursor: pointer;
+        }
+        .btn-wrapper > button::before {
+            content: ' ';
+            display: block;
+            position: absolute;
+            left: 0; top: 0;
+            border: .25rem solid;
+        }
+        .btn-wrapper > button[data-speed=fast]::before {
+            border-color: red transparent transparent red;
+        }
+        .btn-wrapper > button[data-speed=normal]::before {
+            border-color: yellowgreen transparent transparent yellowgreen;
+        }
+        .btn-wrapper > button[data-speed=slow]::before {
+            border-color: skyblue transparent transparent skyblue;
+        }
+        .btn-wrapper > button.review::before {
+            border: none;
+        }
+        .btn-wrapper > button:focus {
+            outline: none;
+        }
+        .active {
+            background-color: #ffe203 !important;
+        }
+        @media only screen and (min-width: 767px){
+            html {
+                font-size: 25px;;
+            }
+        }
     </style>
     <style id="true-style"></style>
 </head>
@@ -45,6 +90,12 @@
                 <div class="lower-lip"></div>
             </div>
         </div>
+    </div>
+    <div class="btn-wrapper">
+        <button data-speed="fast">快速</button>
+        <button data-speed="normal" class="active">普通</button>
+        <button data-speed="slow">慢速</button>
+        <button class="review">重看</button>
     </div>
     <script src="./animation.js"></script>
 </body>

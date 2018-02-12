@@ -1,11 +1,19 @@
 !function () {
+  
+  let count = 0,
+      timer,
+      speedMap = {
+        'fast': 13,
+        'normal': 30,
+        'slow': 50
+      };
 
     function writeCode(code, fakeStyleArea, trueStyleArea, speed, cb) {
         let _speed = typeof speed === 'number' ? speed : 18;
 
-        let count = 0;
         const len = code.length;
-        const timer = setInterval(()=>{
+        clearInterval(timer);
+        timer = setInterval(()=>{
             const byte = code.substr(count++, 1)
             fakeStyleArea.textContent += byte;
             trueStyleArea.textContent += byte;
@@ -17,6 +25,15 @@
                 cb && cb;
             }
         }, speed);
+    }
+
+    function chActive(btns, currentIndex) {
+      Array.prototype.forEach.call(btns, btn => {
+        btn.classList.remove('active');
+      });
+
+      if (!currentIndex && currentIndex != 0) return;
+      btns[currentIndex].classList.add('active');
     }
 
     let code = `
@@ -157,8 +174,28 @@
       background: #ff3f54;
       transform: translateX(-50%); }`;
 
-      const fakeStyleArea = document.querySelector('.code-view');
-      const trueStyleArea = document.getElementById('true-style');
+      const fakeStyleArea = document.querySelector('.code-view'),
+            trueStyleArea = document.getElementById('true-style'),
+            speedBtns = document.querySelectorAll('button[data-speed]'),
+            reviewBtn = document.querySelector('.review');
 
-      writeCode(code, fakeStyleArea, trueStyleArea);
+      Array.prototype.forEach.call(speedBtns, (btn, index) => {
+        btn.addEventListener('click', () => {console.log(index);
+          chActive(speedBtns, index);
+          writeCode(code, fakeStyleArea, trueStyleArea, speedMap[btn.dataset.speed]);
+        });
+      });
+
+      reviewBtn.addEventListener('click', () => {
+        const currentSpeed = document.querySelector('.active').dataset.speed;
+
+        fakeStyleArea.textContent = '';
+        trueStyleArea.textContent = '';
+        clearInterval(timer);
+        count = 0;
+        
+        writeCode(code, fakeStyleArea, trueStyleArea, speedMap[currentSpeed])
+      });
+
+      writeCode(code, fakeStyleArea, trueStyleArea, speedMap.normal);
 }.call();
