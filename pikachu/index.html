@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Drawing A Pikachu</title>
+    <style>
+        * { 
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; 
+        }
+        *::after, *::before {
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        .code-view, .sketchpad {
+            flex: 1;
+            height: 50%;
+            border: 1px solid #000;
+            overflow: auto;
+        }
+    </style>
+    <style id="true-style"></style>
+</head>
+<body>
+    <pre class="code-view"></pre>
+    <div class="sketchpad">
+        <div id="canvas">
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+            <div class="nose"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+            <div class="mouth">
+                <div class="upper-lip left"></div>
+                <div class="upper-lip right"></div>
+                <div class="lower-lip"></div>
+            </div>
+        </div>
+    </div>
+    <script src="./animation.js"></script>
+</body>
+</html>
