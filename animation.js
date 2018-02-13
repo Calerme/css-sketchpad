@@ -176,9 +176,10 @@
 
       const fakeStyleArea = document.querySelector('.code-view'),
             trueStyleArea = document.getElementById('true-style'),
-            currentSpeed = document.querySelector('.active').dataset.speed;
             speedBtns = document.querySelectorAll('button[data-speed]'),
             reviewBtn = document.querySelector('.review');
+            
+      let currentSpeed = document.querySelector('.active').dataset.speed;
 
       Array.prototype.forEach.call(speedBtns, (btn, index) => {
         btn.addEventListener('click', () => {console.log(index);
